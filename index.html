@@ -168,7 +168,7 @@ function classify(p,day){
   var v=p.d[day];
   if(v=="D"||v=="N")return null;
   if(v=="F")return"miss";
-  if(v=="-")return(day==D.cut.day&&(p.t=="VP"||p.t=="VU"))?"pend":"miss";
+  if(v=="-")return(day==D.cut.day&&(D.cut.pend||[]).indexOf(p.t)>=0)?"pend":"miss";
   return late(p.t,v)?"late":"ok";
 }
 function recs(day){
