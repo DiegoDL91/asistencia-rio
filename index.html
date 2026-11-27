@@ -175,6 +175,7 @@ function recs(day){
   var out=[];
   P.forEach(function(p){var c=classify(p,day);if(c)out.push({n:p.n,c:p.c,t:p.t,k:c,h:p.d[day]})});
   D.extra.forEach(function(e){if(e[3].indexOf(day)>=0)out.push({n:e[0],c:e[1],t:e[2],k:"miss",h:"-"})});
+  (D.pendNew||[]).forEach(function(e){if(day>=e.from)out.push({n:e.n,c:e.c,t:e.t,k:"pend",h:"-"})});
   if(D.nocDays.indexOf(day)>=0)D.noc.concat(D.nocNew||[]).forEach(function(n){out.push({n:n,c:"P",t:"NO",k:"pend",h:"-"})});else if((D.nocAbs||[]).indexOf(day)>=0)D.noc.forEach(function(n){out.push({n:n,c:"P",t:"NO",k:"miss",h:"-"})});
   return out;
 }
